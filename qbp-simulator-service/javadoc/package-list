@@ -1,0 +1,6 @@
+com.qbpsimulator.jmx
+com.qbpsimulator.rest
+com.qbpsimulator.rest.heartbeat
+com.qbpsimulator.simulator
+com.qbpsimulator.stats
+com.qbpsimulator.xsd

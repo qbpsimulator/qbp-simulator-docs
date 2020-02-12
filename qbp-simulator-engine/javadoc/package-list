@@ -1,0 +1,10 @@
+com.qbpsimulator.engine
+com.qbpsimulator.engine.exceptions
+com.qbpsimulator.engine.interfaces
+com.qbpsimulator.engine.logger
+com.qbpsimulator.engine.model
+com.qbpsimulator.engine.model.xsd
+com.qbpsimulator.engine.parser
+com.qbpsimulator.engine.parser.bpmn
+com.qbpsimulator.engine.parser.bpmn.xml
+com.qbpsimulator.engine.utils
