@@ -64,7 +64,7 @@ var Bimp =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "35145f65f792590782eb";
+/******/ 	var hotCurrentHash = "97df8611cee355129421";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -104002,6 +104002,7 @@ var RequestHandler = /** @class */ (function () {
     function RequestHandler() {
         this._requestURL = this.getBaseUrl();
         axios_1.default.defaults.baseURL = this._requestURL;
+        axios_1.default.defaults.withCredentials = true;
     }
     RequestHandler.getLastRequestData = function () {
         return this._lastBpmnDocsData;
