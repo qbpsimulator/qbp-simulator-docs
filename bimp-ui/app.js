@@ -40,9 +40,28 @@ var initialFiles = [
     }
 ];
 
-window.addEventListener('DOMContentLoaded', function () {
-        Bimp.init('root-container', bimpConfig /*, initialFiles */);
-    },
-    true
-);
+
+var urlParams = new URLSearchParams(window.location.search);
+// init with postMessage
+if (urlParams.get("post-init")) {
+    window.addEventListener("message", function (message) {
+        var content = JSON.parse(message.data);
+        if (content.type === "INIT") {
+            var file = {
+                name: content.fileName,
+                contents: atob(content.fileContent)
+            }
+
+            Bimp.init('root-container', bimpConfig, [file]);
+        }
+    });
+}
+else {
+    // auto init
+    window.addEventListener('DOMContentLoaded', function () {
+            Bimp.init('root-container', bimpConfig);
+        },
+        true
+    );
+}
 
