@@ -64,7 +64,7 @@ var Bimp =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "2f4d520b3eb7500b94c2";
+/******/ 	var hotCurrentHash = "c34bbfff07920737de27";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -100805,7 +100805,7 @@ var SimulationResultsPage = /** @class */ (function (_super) {
             'hAxis.slantedText': false,
             'chartArea.left': 1,
             'chartArea.top': 1,
-            'colors': ['#3f51b5', '#3f51b5'],
+            'colors': ['#1D2951', '#1D2951'],
             'titleTextStyle': {
                 'color': '#5f5851'
             }
@@ -100858,7 +100858,7 @@ var SimulationResultsPage = /** @class */ (function (_super) {
             'hAxis.slantedText': false,
             'chartArea.left': 1,
             'chartArea.top': 1,
-            'colors': ['#3f51b5', '#3f51b5'],
+            'colors': ['#1D2951', '#1D2951'],
             'titleTextStyle': {
                 'color': '#5f5851'
             },
