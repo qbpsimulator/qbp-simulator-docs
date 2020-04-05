@@ -64,7 +64,7 @@ var Bimp =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "c34bbfff07920737de27";
+/******/ 	var hotCurrentHash = "3fd5e35b410d1d4cb210";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -100560,9 +100560,9 @@ var ScenarioPage = /** @class */ (function (_super) {
                     React.createElement(Gateways_1.Gateways, { sequenceFlows: this.props.modelSimInfo.sequenceFlows.sequenceFlow, gateways: parser.getGateways(), dispatch: this.props.dispatch }),
                     React.createElement(CatchEvents_1.CatchEvents, { elements: this.props.modelSimInfo.elements, catchEvents: parser.getCatchEvents(), dispatchElementSimInfoChange: this.props.dispatchElementSimInfoChange }))),
             React.createElement("div", { id: "sim-button-log-checkbox" },
-                React.createElement(CoreComponents_1.TooltipCheckbox, { checked: this.state.mxmlLog, label: "Generate a MXML log", onChange: function (v) { return _this.onInputChange('mxmlLog', v); }, tooltip: "Generates simulation logs in MXML format. Simulation takes much more time if selected. MXML is a format to store event logs using an XML-based syntax. The logs could be analyzed with other process mining tools." }),
-                React.createElement("div", { id: "submit-button" },
-                    React.createElement("button", { id: "startSimulationButton", onClick: this.onStartSimulationButtonClick, type: "button", className: "button" }, "Start Simulation"))),
+                React.createElement(CoreComponents_1.TooltipCheckbox, { checked: this.state.mxmlLog, label: "Generate a MXML log", onChange: function (v) { return _this.onInputChange('mxmlLog', v); }, tooltip: "Generates simulation logs in MXML format. Simulation takes much more time if selected. MXML is a format to store event logs using an XML-based syntax. The logs could be analyzed with other process mining tools." })),
+            React.createElement("div", { id: "submit-button" },
+                React.createElement("button", { id: "startSimulationButton", onClick: this.onStartSimulationButtonClick, type: "button", className: "button" }, "Start Simulation")),
             React.createElement("br", null),
             React.createElement("div", { id: "file-info" }),
             React.createElement(snackbar_1.default, { action: 'Dismiss', active: this.state.errorBarShowing, label: 'There appears to be a problem with simulation scenario. Please correct the errors: ' + firstError, timeout: 5000, onClick: this.handleErrorBarDismiss, onTimeout: this.handleErrorBarDismiss, type: 'cancel' }),
