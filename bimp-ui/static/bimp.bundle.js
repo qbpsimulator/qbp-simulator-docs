@@ -64,7 +64,7 @@ var Bimp =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "3fd5e35b410d1d4cb210";
+/******/ 	var hotCurrentHash = "403077afc0a461821dd2";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -99819,7 +99819,7 @@ function fetchSimulationKPIsActor(state, dispatch) {
     if (isSimulationCompleted != hadSimulationCompleted) {
         if (isSimulationCompleted) {
             var rh = new RequestHandler_1.default();
-            rh.getSimulationKPIs(state.simulation.id);
+            rh.getSimulationResults(state.simulation.id);
         }
         hadSimulationCompleted = isSimulationCompleted;
     }
@@ -99832,13 +99832,6 @@ function fetchSimulationHistogramDataActor(state, dispatch) {
     if (hasSimulationKPIs != hadSimulationKPIs) {
         if (hasSimulationKPIs) {
             dispatch(Actions.setNewPage('results'));
-            if (state.simulation.id) {
-                var rh = new RequestHandler_1.default();
-                rh.getProcessDurations(state.simulation.id);
-                rh.getProcessCycleTimes(state.simulation.id);
-                rh.getProcessWaitingTimes(state.simulation.id);
-                rh.getProcessCosts(state.simulation.id);
-            }
         }
         hadSimulationKPIs = hasSimulationKPIs;
     }
@@ -104112,77 +104105,17 @@ var RequestHandler = /** @class */ (function () {
             });
         });
     };
-    RequestHandler.prototype.getSimulationKPIs = function (simulationId) {
+    RequestHandler.prototype.getSimulationResults = function (simulationId) {
         store_1.store.dispatch({
-            type: "SIMULATION_KPI",
+            type: "SIMULATION_RESULTS",
             payload: axios_1.default({
-                url: '/api/Simulation/' + simulationId + '/KPI',
+                url: '/api/Simulation/' + simulationId + '/Results',
                 method: 'get'
             })
         })
             .then(function (response) {
             store_1.store.dispatch({
-                type: "SIMULATION_KPI_PARSE",
-                payload: XMLParser_1.parseAsync(response.value.data)
-            });
-        });
-    };
-    RequestHandler.prototype.getProcessDurations = function (simulationId) {
-        store_1.store.dispatch({
-            type: "SIMULATION_PROCESS_DURATION",
-            payload: axios_1.default({
-                url: '/api/Simulation/' + simulationId + '/Distribution/ProcessDuration?bars=10',
-                method: 'get'
-            })
-        })
-            .then(function (response) {
-            store_1.store.dispatch({
-                type: "SIMULATION_PROCESS_DURATION_PARSE",
-                payload: XMLParser_1.parseAsync(response.value.data)
-            });
-        });
-    };
-    RequestHandler.prototype.getProcessCycleTimes = function (simulationId) {
-        store_1.store.dispatch({
-            type: "SIMULATION_PROCESS_CYCLETIME",
-            payload: axios_1.default({
-                url: '/api/Simulation/' + simulationId + '/Distribution/CycleTime?bars=10',
-                method: 'get'
-            })
-        })
-            .then(function (response) {
-            store_1.store.dispatch({
-                type: "SIMULATION_PROCESS_CYCLETIME_PARSE",
-                payload: XMLParser_1.parseAsync(response.value.data)
-            });
-        });
-    };
-    RequestHandler.prototype.getProcessWaitingTimes = function (simulationId) {
-        store_1.store.dispatch({
-            type: "SIMULATION_PROCESS_WAITINGTIME",
-            payload: axios_1.default({
-                url: '/api/Simulation/' + simulationId + '/Distribution/ProcessWaitingTime?bars=10',
-                method: 'get'
-            })
-        })
-            .then(function (response) {
-            store_1.store.dispatch({
-                type: "SIMULATION_PROCESS_WAITINGTIME_PARSE",
-                payload: XMLParser_1.parseAsync(response.value.data)
-            });
-        });
-    };
-    RequestHandler.prototype.getProcessCosts = function (simulationId) {
-        store_1.store.dispatch({
-            type: "SIMULATION_PROCESS_COST",
-            payload: axios_1.default({
-                url: '/api/Simulation/' + simulationId + '/Distribution/ProcessCost?bars=10',
-                method: 'get'
-            })
-        })
-            .then(function (response) {
-            store_1.store.dispatch({
-                type: "SIMULATION_PROCESS_COST_PARSE",
+                type: "SIMULATION_RESULTS_PARSE",
                 payload: XMLParser_1.parseAsync(response.value.data)
             });
         });
@@ -104737,27 +104670,17 @@ exports.SimulationReducer = function (state, action) {
         case "START_SIMULATION_PENDING":
             return __assign({}, state, { pending: true, error: null, status: null, results: null, mxmlRequested: !!action.meta.generateMxml });
         case "SIMULATION_STATUS_PENDING":
-        case "SIMULATION_KPI_PENDING":
             return __assign({}, state, { pending: true, error: null });
         case "START_SIMULATION_REJECTED":
         case "START_SIMULATION_PARSE_REJECTED":
         case "SIMULATION_STATUS_REJECTED":
         case "SIMULATION_STATUS_PARSE_REJECTED":
-        case "SIMULATION_KPI_REJECTED":
-        case "SIMULATION_KPI_PARSE_REJECTED":
-        case "SIMULATION_PROCESS_DURATION_REJECTED":
-        case "SIMULATION_PROCESS_DURATION_PARSE_REJECTED":
-        case "SIMULATION_PROCESS_CYCLETIME_REJECTED":
-        case "SIMULATION_PROCESS_CYCLETIME_PARSE_REJECTED":
-        case "SIMULATION_PROCESS_WAITINGTIME_REJECTED":
-        case "SIMULATION_PROCESS_WAITINGTIME_PARSE_REJECTED":
-        case "SIMULATION_PROCESS_COST_REJECTED":
-        case "SIMULATION_PROCESS_COST_PARSE_REJECTED":
+        case "SIMULATION_RESULTS_REJECTED":
+        case "SIMULATION_RESULTS_PARSE_REJECTED":
             console.error(action.payload);
             return __assign({}, state, { pending: false, error: action.payload });
         case "START_SIMULATION_FULFILLED":
         case "SIMULATION_STATUS_FULFILLED":
-        case "SIMULATION_KPI_FULFILLED":
             return __assign({}, state, { pending: false, error: null });
         case "START_SIMULATION_PARSE_FULFILLED":
             var startResponse = action.payload.StartSimulationResponse;
@@ -104765,30 +104688,8 @@ exports.SimulationReducer = function (state, action) {
         case "SIMULATION_STATUS_PARSE_FULFILLED":
             var statusResponse = action.payload.SimulationStatusResponse;
             return __assign({}, state, { status: statusResponse.status, error: null });
-        case "SIMULATION_KPI_PARSE_FULFILLED":
-            var kpiResponse = action.payload.SimulationKPIResponse;
-            var results = {};
-            results.Results = kpiResponse;
-            return __assign({}, state, { results: results, error: null });
-        case "SIMULATION_PROCESS_DURATION_PARSE_FULFILLED":
-        case "SIMULATION_PROCESS_CYCLETIME_PARSE_FULFILLED":
-        case "SIMULATION_PROCESS_WAITINGTIME_PARSE_FULFILLED":
-        case "SIMULATION_PROCESS_COST_PARSE_FULFILLED":
-            var distibutionResponse = action.payload.SimulationHistogramResponse;
-            var newResults = __assign({}, state.results);
-            if (action.type === "SIMULATION_PROCESS_DURATION_PARSE_FULFILLED") {
-                newResults.CycleTimesInTimetableData = distibutionResponse;
-            }
-            else if (action.type === "SIMULATION_PROCESS_CYCLETIME_PARSE_FULFILLED") {
-                newResults.CycleTimesData = distibutionResponse;
-            }
-            else if (action.type === "SIMULATION_PROCESS_WAITINGTIME_PARSE_FULFILLED") {
-                newResults.WaitingTimesData = distibutionResponse;
-            }
-            else if (action.type === "SIMULATION_PROCESS_COST_PARSE_FULFILLED") {
-                newResults.CostsData = distibutionResponse;
-            }
-            return __assign({}, state, { results: newResults });
+        case "SIMULATION_RESULTS_PARSE_FULFILLED":
+            return __assign({}, state, { results: action.payload.Results });
         case "SIMULATION_RESULTS_LOADED":
             return __assign({}, state, { results: action.payload });
         default:
