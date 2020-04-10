@@ -64,7 +64,7 @@ var Bimp =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "c5630ad181ede5d5e4a6";
+/******/ 	var hotCurrentHash = "190d2bcd6b6ebf2d0407";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -101168,30 +101168,8 @@ var UploadPage = /** @class */ (function (_super) {
             : null;
         return (React.createElement("div", { id: "uploadPage", className: "contents" },
             React.createElement("div", { className: "qbp-toppositions", id: "top-model-area" },
-                React.createElement("div", { id: "instructions", className: "moduletable" },
-                    React.createElement("h3", null, "Here are some instructions"),
-                    React.createElement("br", null),
-                    React.createElement("ol", null,
-                        React.createElement("li", null, "Please select a valid BPMN 2.0 file, or more if you need process definitions from multiple files."),
-                        React.createElement("li", null,
-                            "Press ",
-                            React.createElement("b", { className: "blue" }, "\"Continue\""),
-                            " in order to add/change simulation information."),
-                        React.createElement("li", null,
-                            "Tick the ",
-                            React.createElement("b", { className: "blue" }, "\"Generate a log\""),
-                            " box if you want to be able to download simulation MXML log afterwards."),
-                        React.createElement("li", null,
-                            "Click ",
-                            React.createElement("b", { className: "blue" }, "\"Start simulation\""),
-                            "."),
-                        React.createElement("li", null, "Be amazed and wonder how such magic came to be.")),
-                    React.createElement("p", null,
-                        "You can find a sample process model to try out ",
-                        React.createElement("a", { href: "http://fundamentals-of-bpm.org/wp-content/uploads/2013/11/ch7_CreditAppSimulation.bpmn_.zip" }, "here"),
-                        ". Just unzip and upload the BPMN model!")),
                 React.createElement("div", { id: "upload-area" },
-                    React.createElement("h3", null, "Upload your .BPMN or .VSDX file"),
+                    React.createElement("h3", null, "Upload your .BPMN file"),
                     React.createElement("br", null),
                     React.createElement("form", { id: "upload" },
                         React.createElement("fieldset", null,
@@ -101204,7 +101182,25 @@ var UploadPage = /** @class */ (function (_super) {
                             React.createElement("br", null),
                             loadedFiles,
                             this.state.loadedFiles.length > 1 && React.createElement(CoreComponents_1.TooltipDropdown, { source: loadedFilesDropdownSource, tooltip: "Select the BPMN file which is the main entry point to the simulation scenario.", label: "Simulation entry point", required: true, allowBlank: true, error: this.state.simulationEntryFilenameError, value: this.state.simulationEntryFilename, onChange: this.onSimulationEntryFilenameChanged }))),
-                    React.createElement("button", { className: "button", id: "continue-button", disabled: !this.state.loadedFiles, onClick: this.onContinueClicked }, "Continue"))),
+                    React.createElement("button", { className: "button", id: "continue-button", disabled: !this.state.loadedFiles, onClick: this.onContinueClicked }, "Continue")),
+                React.createElement("div", { id: "instructions", className: "moduletable" },
+                    React.createElement("h3", null, "Here are some instructions"),
+                    React.createElement("br", null),
+                    React.createElement("ol", null,
+                        React.createElement("li", null, "Select a valid BPMN 2.0 file, or more if you need process definitions from multiple files."),
+                        React.createElement("li", null,
+                            "Press ",
+                            React.createElement("b", { className: "blue" }, "\"Continue\""),
+                            " in order to add/change simulation information."),
+                        React.createElement("li", null,
+                            "Tick the ",
+                            React.createElement("b", { className: "blue" }, "\"Generate a log\""),
+                            " box if you want to be able to download simulation MXML log afterwards."),
+                        React.createElement("li", null,
+                            "Click ",
+                            React.createElement("b", { className: "blue" }, "\"Start simulation\""),
+                            "."),
+                        React.createElement("li", null, "Be amazed and wonder how such magic came to be.")))),
             React.createElement(snackbar_1.default, { action: 'Dismiss', active: this.state.errorBarShowing, 
                 //timeout={5000}
                 onClick: this.handleErrorBarDismiss, onTimeout: this.handleErrorBarDismiss, type: 'cancel' },
