@@ -6,16 +6,14 @@ var bimpConfig = {
     // Path to the Simulation endpoint in the service
     url: "/",
     // Credentials for obtaining JWT Token
-    jwtAuth: {
+    // jwtAuth: {
+    //     // token: "jwt auth token if known"
+    // },
+    // Credentials for basic auth, if applicable
+    basicAuth: {
         username: "limited",
         password: "limited"
-        // token: "jwt auth token if known"
     },
-    // Credentials for basic auth, if applicable
-    // basicAuth: {
-    //     username: "limited",
-    //     password: "limited"
-    // },
     // Relative path prefix to BPMN and Heatmap viewer files (bpmnViewer.html and heatmapViewer.html) to be opened when requested.
     linkPrefix: "",
     // API key for errorstack.com error reporting
