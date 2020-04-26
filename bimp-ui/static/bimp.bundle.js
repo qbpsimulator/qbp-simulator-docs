@@ -64,7 +64,7 @@ var Bimp =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f5d0e2ed196fda11104b";
+/******/ 	var hotCurrentHash = "209a96046c4c5e786f76";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -73892,9 +73892,9 @@ var ProcessSimulationInfo_1 = __webpack_require__(/*! ./model-components/Process
 var BPMNViewer = function () { return React.createElement(BPMNViewerPage_1.default, null); };
 var HeatmapViewer = function () { return React.createElement(BPMNViewerPage_1.default, { showHeatmap: true }); };
 var defaultConfig = {
-    protocol: "http://",
-    host: "www.qbp-simulator.com:8080",
-    url: "/qbp-simulator/rest/Simulation",
+    protocol: "https://",
+    host: "api.qbp-simulator.com",
+    url: "/rest/v1/Simulation",
     linkPrefix: "",
     errorStackApiKey: ""
 };
@@ -75120,7 +75120,6 @@ var RequestHandler = /** @class */ (function () {
                             type: "START_SIMULATION",
                             payload: axios_1.default({
                                 method: 'post',
-                                url: '/api/Simulation',
                                 data: reqData,
                                 headers: {
                                     'Content-Type': 'application/xml; charset=utf-8'
@@ -75145,7 +75144,7 @@ var RequestHandler = /** @class */ (function () {
         return store_1.store.dispatch({
             type: "SIMULATION_STATUS",
             payload: axios_1.default({
-                url: '/api/Simulation/' + simulationId,
+                url: simulationId,
                 method: 'get'
             })
         })
@@ -75160,7 +75159,7 @@ var RequestHandler = /** @class */ (function () {
         store_1.store.dispatch({
             type: "SIMULATION_RESULTS",
             payload: axios_1.default({
-                url: '/api/Simulation/' + simulationId + '/Results',
+                url: simulationId + '/Results',
                 method: 'get'
             })
         })
@@ -75177,7 +75176,7 @@ var RequestHandler = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, axios_1.default({
-                            url: '/api/Simulation/' + simulationId + '/MXML',
+                            url: simulationId + '/MXML',
                             method: 'get',
                             responseType: 'blob'
                         })];
@@ -75195,7 +75194,7 @@ var RequestHandler = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, axios_1.default({
-                            url: '/api/Simulation/' + simulationId + '/CSV',
+                            url: simulationId + '/CSV',
                             method: 'get',
                             responseType: 'blob'
                         })];

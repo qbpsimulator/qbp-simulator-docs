@@ -2,9 +2,9 @@ var bimpConfig = {
     // Protocol for Simulation Service
     protocol: "https://",
     // Hostname and port where RESTful Simulation Service is hosted
-    host: "api.qbp-simulator.com", // or: window.location.hostname + ":8080"
+    host: "api.qbp-simulator.com",
     // Path to the Simulation endpoint in the service
-    url: "/",
+    url: "/rest/v1/Simulation", // or just /Simulation on localhost
     // Credentials for obtaining JWT Token
     // jwtAuth: {
     //     // token: "jwt auth token if known"
