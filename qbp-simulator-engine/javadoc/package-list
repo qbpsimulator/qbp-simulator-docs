@@ -7,4 +7,5 @@ com.qbpsimulator.engine.model.xsd
 com.qbpsimulator.engine.parser
 com.qbpsimulator.engine.parser.bpmn
 com.qbpsimulator.engine.parser.bpmn.xml
+com.qbpsimulator.engine.results
 com.qbpsimulator.engine.utils

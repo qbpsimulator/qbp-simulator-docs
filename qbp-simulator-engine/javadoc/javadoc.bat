@@ -1,1 +1,1 @@
-"c:\Program Files\Java\jdk1.8.0_191\jre\..\bin\javadoc.exe" @options @argfile
+cmd.exe /X /C ""C:\Program Files\Java\jdk1.8.0_191\jre\..\bin\javadoc.exe" @options @argfile"

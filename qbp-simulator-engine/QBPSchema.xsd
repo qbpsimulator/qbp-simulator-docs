@@ -39,6 +39,20 @@
                     </sequence>
                 </complexType>
             </element>
+            <element name="holidays" minOccurs="0" maxOccurs="1">
+                <annotation>
+                    <documentation>
+                        List of all holiday definitions.
+                    </documentation>
+                </annotation>
+                <complexType>
+                    <sequence maxOccurs="unbounded">
+                        <element name="holidays" type="qbp:Holidays"
+                            minOccurs="1" maxOccurs="unbounded">
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
             <element name="resources" minOccurs="0" maxOccurs="1">
                 <annotation>
                     <documentation>
@@ -438,7 +452,7 @@
                         <element name="rule" type="qbp:TimeTableRule"
                             minOccurs="1" maxOccurs="unbounded">
                             <annotation>
-                                <documentation>TIme table rule</documentation>
+                                <documentation>Time table rule</documentation>
                             </annotation>
                         </element>
                     </sequence>
@@ -461,6 +475,36 @@
         <attribute name="name" type="string" use="optional">
             <annotation>
                 <documentation>Friendly name of the time table</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="holidaysId" type="string" use="optional">
+            <annotation>
+                <documentation>Id of the Holidays definition to be used for the timetable</documentation>
+            </annotation>
+        </attribute>
+    </complexType>
+
+    <complexType name="Holidays">
+        <annotation>
+            <documentation>
+                Definition of holidays which can be associated with timetables by the Id.
+            </documentation>
+        </annotation>
+        <sequence>
+            <element name="holiday" minOccurs="0" maxOccurs="unbounded" type="qbp:Holiday">
+                <annotation>
+                    <documentation>Dates of the holiday</documentation>
+                </annotation>
+            </element>
+        </sequence>
+        <attribute name="id" type="ID" use="required">
+            <annotation>
+                <documentation>Unique Id of the holiday defintion</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="name" type="string" use="optional">
+            <annotation>
+                <documentation>Friendly name of the holiday definition</documentation>
             </annotation>
         </attribute>
     </complexType>
@@ -495,6 +539,19 @@
             use="optional">
             <annotation>
                 <documentation>Day until this time table rule applies
+                </documentation>
+            </annotation>
+        </attribute>
+    </complexType>
+
+    <complexType name="Holiday">
+        <annotation>
+            <documentation>Holiday</documentation>
+        </annotation>
+        <attribute name="date" type="date" use="required">
+            <annotation>
+                <documentation>
+                    Date of the holiday
                 </documentation>
             </annotation>
         </attribute>
